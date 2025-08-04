@@ -1,0 +1,23 @@
+services: 
+  server:
+    container_name: SERVER_TIC_TAC_TOE
+    build: "./backend/"
+    networks:
+      - app_api_network
+    ports:
+    - "3001:3001"
+    volumes: 
+    - ./backend:/node-app
+  frontend:
+    container_name: FRONT_TIC_TAC_TOE
+    build: "./frontend/"
+    networks:
+      - app_api_network
+    ports:
+      - "3000:3000"
+    volumes:
+    - ./frontend:/node-app
+    
+networks:
+    app_api_network:
+        driver: bridge
