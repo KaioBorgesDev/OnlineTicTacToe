@@ -1,6 +1,6 @@
 import { GameSession } from "./GameSession";
 import { GameStatistics } from "./GameStatistics";
-import { User } from "./User";
+import { User } from "../User";
 
 export class Player extends User {
 
