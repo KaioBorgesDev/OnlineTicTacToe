@@ -1,6 +1,6 @@
 # TIC TAC TOE ONLINE (Jogo da Velha Multiplayer)
 
-Bem-vindo ao repositório do **Tic Tac Toe Online**, um projeto feito com foco total em **comunicação bi-direcional** utilizando **WebSockets**, **arquitetura orientada a eventos**, e tecnologias modernas como **Docker**, **Node.js**, **Express**, **TypeScript** e **React**!
+Bem-vindo ao repositório do **Tic Tac Toe Online**, um projeto feito com foco total em **comunicação bi-direcional** utilizando **WebSockets**, **arquitetura limpa (clean-architecture)**, e tecnologias modernas como **Docker**, **Node.js**, **Express**, **TypeScript** e **React**!
 
 ---
 
