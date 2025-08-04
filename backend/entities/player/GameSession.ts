@@ -13,6 +13,10 @@ export class GameSession {
             currentGameID: this.currentGameID
         };
     }
+    // * isso é diferente de isInMatch *
+    public isInGame(): boolean {
+        return this.isConnected
+    }
 
     public joinGame(gameId: string){
         this.currentGameID = gameId;
