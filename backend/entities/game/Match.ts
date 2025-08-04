@@ -1,38 +1,24 @@
-import { Board } from "types/Board";
-import { GameResult } from "types/GameResult";
-import { GameStatus } from "types/GameStatus";
 import { Player } from "types/Player";
 import Game from "./Game";
 
 
 
 export class Match extends Game {
-    public readonly _id: string;
-    public board: Board;
+    
     public currentPlayer: Player;
-    public status: GameStatus;
-    public result: GameResult;
     public players: {
         X?: string;
         O?: string;
     };
     public winner: Player | null;
-    public createdAt: Date;
-    public updatedAt: Date;
     public numberMoves: number;
 
     constructor(_id: string){
-            super();
-        this._id = _id;
-        this.board = Array(9).fill(null) as Board;
-        this.currentPlayer = "X";
-        this.status = "Aguardando";
-        this.result = null;
-        this.players = {};
-        this.winner = null;
-        this.createdAt = new Date();
-        this.updatedAt = new Date();
-        this.numberMoves = 0;
+        super(_id);
+            this.currentPlayer = "X";
+            this.players = {};
+            this.winner = null;
+            this.numberMoves = 0;
     }
 
     public addPlayer(playerId: string): Player | null {
@@ -42,10 +28,12 @@ export class Match extends Game {
         }
         if (!this.players.O) {
             this.players.O = playerId;
+            this.status = "Jogando";
             return "O";
         }
         return null;
     }
+   
 
     public removePlayer(playerId: string): Player | null {
         if (this.players.X === playerId) {
