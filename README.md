@@ -6,7 +6,7 @@ Bem-vindo ao repositório do **Tic Tac Toe Online**, um projeto feito com foco t
 
 ## Qual a ideia deste repositório?
 
-> O objetivo deste projeto é **maximizar o aprendizado em comunicação bi-direcional** com WebSockets, aplicando **patterns orientados a eventos** e testando ferramentas e tecnologias modernas em um ambiente realista e divertido.
+> O objetivo deste projeto é **maximizar o aprendizado em comunicação bi-direcional** com WebSockets, aplicando **arquitetura limpa (clean-architecture)** e testando ferramentas e tecnologias modernas em um ambiente realista e divertido.
 
 Este projeto serve como uma jornada prática para quem quer:
 
