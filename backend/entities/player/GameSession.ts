@@ -1,16 +1,16 @@
 export class GameSession {
     private isConnected: boolean;
-    private currentGameID?: string;
+    private currentMatchID?: string;
 
     constructor() {
         this.isConnected = true;
-        this.currentGameID = undefined;
+        this.currentMatchID = undefined;
     }
 
     public getStatus() {
         return {
             isConnected: this.isConnected,
-            currentGameID: this.currentGameID
+            currentMatchID: this.currentMatchID
         };
     }
     // * isso é diferente de isInMatch *
@@ -18,11 +18,14 @@ export class GameSession {
         return this.isConnected
     }
 
-    public joinGame(gameId: string){
-        this.currentGameID = gameId;
+    public isInMatch(): boolean{
+        return this.currentMatchID !== undefined && this.currentMatchID !== null
     }
-    public leaveGame(){
-        this.currentGameID = undefined;
+    public joinMatch(matchID: string){
+        this.currentMatchID = matchID;
+    }
+    public leaveMatch(){
+        this.currentMatchID = undefined;
     }
     public connect(){
         this.isConnected = true;
