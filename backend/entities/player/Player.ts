@@ -22,7 +22,7 @@ export class Player extends User {
         }
     }
 
-    public getGameSessionStatus() {
+    public getGameSession() {
         return this.gameSession;
     }
 
