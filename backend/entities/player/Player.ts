@@ -15,10 +15,12 @@ export class Player extends User {
 
     public getPublicProfile(){
         return {
-            _id: this._id,
+            id: this._id,
             name: this.name,
-            ...this.gameSession.getStatus(),
-            ...this.gameStatistics.getStats()
+            isConnected: this.gameSession.isInGame(),
+            currentGameId: this.gameSession.getStatus().currentMatchID,
+            stats: this.gameStatistics.getStats(),
+            createdAt: new Date().toISOString()
         }
     }
 
