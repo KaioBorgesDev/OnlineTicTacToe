@@ -12,10 +12,10 @@ export default class JoinMatchUseCase {
 
     async execute(matchID: string, playerID: string): Promise< { match: Match, playerSymbol: string }>{
         const match = await this.matchRepository.findById(matchID);
-        const player = await this.playerRepository.findById(playerID);
-
-        if (!player) throw new Error("Não foi encontrado nenhum player com esse ID");
         if (!match) throw new Error("Não há nenhuma partida com esse ID");
+
+        const player = await this.playerRepository.findById(playerID);
+        if (!player) throw new Error("Não foi encontrado nenhum player com esse ID");
 
         const existingSymbol = match.getCurrentPlayerSymbol(playerID)
 
