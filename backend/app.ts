@@ -19,7 +19,7 @@ const app = express();
 const httpServer = createServer(app);
 const io = new SocketIOServer(httpServer, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000", "https://online-tic-tac-toe-virid.vercel.app/"],
     methods: ["GET", "POST"]
   }
 });
