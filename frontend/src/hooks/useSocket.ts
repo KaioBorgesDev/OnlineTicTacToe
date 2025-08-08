@@ -18,7 +18,7 @@ export const useSocket = (): UseSocketReturn => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    socketRef.current = io( process.env.API_BACKEND ||'http://localhost:3001');
+    socketRef.current = io( process.env.API_BACKEND ||'https://kaioborgesdevtictactoe.netlify.app:3001/');
     const socket = socketRef.current;
 
     socket.on('connect', () => {
