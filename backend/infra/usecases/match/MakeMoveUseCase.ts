@@ -1,7 +1,8 @@
-import Game from "entities/game/Game";
-import { Match } from "entities/game/Match";
-import { MatchRepositoryInterface } from "infra/interfaces/MatchRepositoryInterface"
-import { PlayerRepositoryInterface } from "infra/interfaces/PlayerRepositoryInterface";
+import Game from "../../../entities/game/Game.js";
+import { Match } from "../../../entities/game/Match.js";
+import { MatchRepositoryInterface } from "../../interfaces/MatchRepositoryInterface.js";
+import { PlayerRepositoryInterface } from "../../interfaces/PlayerRepositoryInterface.js";
+
 
 export default class MakeMoveUseCase {
     constructor(

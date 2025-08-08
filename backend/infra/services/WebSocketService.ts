@@ -1,8 +1,9 @@
-import { CreateMatchUseCase } from 'infra/usecases/match/CreateMatchUseCase';
-import JoinMatchUseCase from 'infra/usecases/match/JoinMatchUseCase';
-import MakeMoveUseCase from 'infra/usecases/match/MakeMoveUseCase';
-import { PlayerConnectionUseCase } from 'infra/usecases/player/PlayerConnectionUseCase';
+
 import { Server as SocketIOServer, Socket } from 'socket.io';
+import { CreateMatchUseCase } from '../usecases/match/CreateMatchUseCase.js';
+import JoinMatchUseCase from '../usecases/match/JoinMatchUseCase.js';
+import MakeMoveUseCase from '../usecases/match/MakeMoveUseCase.js';
+import { PlayerConnectionUseCase } from '../usecases/player/PlayerConnectionUseCase.js';
 
 export class WebSocketService {
   private io: SocketIOServer;

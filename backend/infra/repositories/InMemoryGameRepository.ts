@@ -1,5 +1,6 @@
-import { Match } from "entities/game/Match";
-import { MatchRepositoryInterface } from "infra/interfaces/MatchRepositoryInterface";
+import { Match } from "../../entities/game/Match.js";
+import { MatchRepositoryInterface } from "../interfaces/MatchRepositoryInterface.js";
+
 
 export class InMemoryMatchRepository implements MatchRepositoryInterface {
   private matchs: Map<string, Match> = new Map();

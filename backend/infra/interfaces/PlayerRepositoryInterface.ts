@@ -1,4 +1,4 @@
-import { Player } from "entities/player/Player";
+import { Player } from "../../entities/player/Player.js";
 
 export interface PlayerRepositoryInterface {
   create(player: Player): Promise<Player>;

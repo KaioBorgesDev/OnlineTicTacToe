@@ -1,5 +1,5 @@
-import { Player } from "entities/player/Player";
-import { PlayerRepositoryInterface } from "infra/interfaces/PlayerRepositoryInterface";
+import { Player } from "../../entities/player/Player.js";
+import { PlayerRepositoryInterface } from "../interfaces/PlayerRepositoryInterface.js";
 
 export class InMemoryPlayerRepository implements PlayerRepositoryInterface {
   private players: Map<string, Player> = new Map();
