@@ -35,28 +35,28 @@ export const useSocket = (): UseSocketReturn => {
       setPlayer(data.player);
     });
 
-    socket.on('game:created', (data: { game: GameState; playerSymbol: Player; playerId: string }) => {
-      setGame(data.game);
+    socket.on('match:created', (data: { match: GameState; playerSymbol: Player; playerId: string }) => {
+      setGame(data.match);
       setPlayerSymbol(data.playerSymbol);
       setError(null);
     });
 
-    socket.on('game:joined', (data: { game: GameState; playerSymbol: Player; playerId: string }) => {
-      setGame(data.game);
+    socket.on('match:joined', (data: { match: GameState; playerSymbol: Player; playerId: string }) => {
+      setGame(data.match);
       setPlayerSymbol(data.playerSymbol);
       setError(null);
     });
 
-    socket.on('game:updated', (data: { game: GameState }) => {
-      setGame(data.game);
+    socket.on('match:updated', (data: { match: GameState }) => {
+      setGame(data.match);
     });
 
-    socket.on('game:finished', (data: { game: GameState; winner: Player | null; result: GameResult }) => {
-      setGame(data.game);
+    socket.on('match:finished', (data: { match: GameState; winner: Player | null; result: GameResult }) => {
+      setGame(data.match);
     });
 
-    socket.on('game:restarted', (data: { game: GameState; playerSymbol: Player; playerId: string }) => {
-      setGame(data.game);
+    socket.on('match:restarted', (data: { match: GameState; playerSymbol: Player; playerId: string }) => {
+      setGame(data.match);
       setPlayerSymbol(data.playerSymbol);
       setError(null);
     });
@@ -72,25 +72,25 @@ export const useSocket = (): UseSocketReturn => {
 
   const createGame = () => {
     if (socketRef.current) {
-      socketRef.current.emit('game:create');
+      socketRef.current.emit('match:create');
     }
   };
 
   const joinGame = (gameId: string) => {
     if (socketRef.current) {
-      socketRef.current.emit('game:join', { gameId });
+      socketRef.current.emit('match:join', { matchId: gameId });
     }
   };
 
   const makeMove = (position: number) => {
     if (socketRef.current && game) {
-      socketRef.current.emit('game:move', { gameId: game.id, position });
+      socketRef.current.emit('match:move', { matchId: game.id, position });
     }
   };
 
   const restartGame = () => {
     if (socketRef.current && game) {
-      socketRef.current.emit('game:restart', { gameId: game.id });
+      socketRef.current.emit('match:restart', { matchId: game.id });
     }
   };
 

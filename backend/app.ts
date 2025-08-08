@@ -1,6 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import { createServer } from "http";
+import { Server as SocketIOServer } from "socket.io";
 import { WebSocketService } from "infra/services/WebSocketService";
 import { CreateMatchUseCase } from "infra/usecases/match/CreateMatchUseCase";
 import { InMemoryPlayerRepository } from "infra/repositories/InMemoryPlayerRepository";
@@ -8,15 +10,27 @@ import { InMemoryMatchRepository } from "infra/repositories/InMemoryGameReposito
 import JoinMatchUseCase from "infra/usecases/match/JoinMatchUseCase";
 import MakeMoveUseCase from "infra/usecases/match/MakeMoveUseCase";
 import { PlayerConnectionUseCase } from "infra/usecases/player/PlayerConnectionUseCase";
+
 dotenv.config();
 
-const port = process.env.PORT || 3001;
+const port = Number(process.env.PORT) || 3001;
 
-const server = express();
+const app = express();
+const httpServer = createServer(app);
+const io = new SocketIOServer(httpServer, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"]
+  }
+});
 
-server.use(cors({
+app.use(cors({
   origin: "http://localhost:3000"
 }));
+
+app.get("/", (req, res) => {
+  res.send("TicTacToe Server is running!");
+});
 
 const playerRepository = new InMemoryPlayerRepository();
 const matchRepository = new InMemoryMatchRepository(); 
@@ -25,9 +39,8 @@ const joinMatchUseCase = new JoinMatchUseCase(matchRepository, playerRepository)
 const makeMoveUseCase = new MakeMoveUseCase(matchRepository, playerRepository);
 const playerConnectionUseCase = new PlayerConnectionUseCase(playerRepository, matchRepository);
 
-new WebSocketService(server, createMachUseCase, joinMatchUseCase, makeMoveUseCase, playerConnectionUseCase);
+new WebSocketService(io, createMachUseCase, joinMatchUseCase, makeMoveUseCase, playerConnectionUseCase);
 
-
-server.listen(port, '0.0.0.0', ()=> {
+httpServer.listen(port, '0.0.0.0', () => {
     console.log(`We are running on port ${port}`);
 });
