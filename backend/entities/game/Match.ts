@@ -1,16 +1,16 @@
-import { Player } from "types/Player";
-import Game from "./Game";
+import { PlayerSymbol } from "../../types/PlayerSymbol.js";
+import Game from "./Game.js";
 
 
 
 export class Match extends Game {
     
-    public currentPlayer: Player;
+    public currentPlayer: PlayerSymbol;
     public players: {
         X?: string;
         O?: string;
     };
-    public winner: Player | null;
+    public winner: PlayerSymbol | null;
     public numberMoves: number;
 
     constructor(_id: string){
@@ -21,7 +21,7 @@ export class Match extends Game {
             this.numberMoves = 0;
     }
 
-    public addPlayer(playerId: string): Player | null {
+    public addPlayer(playerId: string): PlayerSymbol | null {
         if (!this.players.X) {
             this.players.X = playerId;
             return "X";
@@ -35,7 +35,7 @@ export class Match extends Game {
     }
    
 
-    public removePlayer(playerId: string): Player | null {
+    public removePlayer(playerId: string): PlayerSymbol | null {
         if (this.players.X === playerId) {
             delete this.players.X;
             return "X";
@@ -47,7 +47,7 @@ export class Match extends Game {
         return null;
     }
 
-    public getCurrentPlayerSymbol(playerID: string): Player | null{
+    public getCurrentPlayerSymbol(playerID: string): PlayerSymbol | null{
         if (this.players.X === playerID) return "X";
         if (this.players.O === playerID) return "O";
         return null;
@@ -60,7 +60,7 @@ export class Match extends Game {
     }
 
 
-    private checkWinner(): Player | null {
+    private checkWinner(): PlayerSymbol | null {
         const winningCombinations = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8], 
         [0, 3, 6], [1, 4, 7], [2, 5, 8], 
@@ -69,8 +69,9 @@ export class Match extends Game {
 
         for (const combination of winningCombinations) {
             const [a, b, c] = combination;
-            if (this.board[a] && this.board[a] === this.board[b] && this.board[a] === this.board[c]) {
-                return this.board[a] as Player;
+            if (a !== undefined && b !== undefined && c !== undefined &&
+                this.board[a] && this.board[a] === this.board[b] && this.board[a] === this.board[c]) {
+                return this.board[a] as PlayerSymbol;
             }
         }
         return null;

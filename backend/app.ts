@@ -3,13 +3,13 @@ import dotenv from "dotenv";
 import cors from "cors";
 import { createServer } from "http";
 import { Server as SocketIOServer } from "socket.io";
-import { WebSocketService } from "infra/services/WebSocketService";
-import { CreateMatchUseCase } from "infra/usecases/match/CreateMatchUseCase";
-import { InMemoryPlayerRepository } from "infra/repositories/InMemoryPlayerRepository";
-import { InMemoryMatchRepository } from "infra/repositories/InMemoryGameRepository";
-import JoinMatchUseCase from "infra/usecases/match/JoinMatchUseCase";
-import MakeMoveUseCase from "infra/usecases/match/MakeMoveUseCase";
-import { PlayerConnectionUseCase } from "infra/usecases/player/PlayerConnectionUseCase";
+import { InMemoryPlayerRepository } from "./infra/repositories/InMemoryPlayerRepository.js";
+import { InMemoryMatchRepository } from "./infra/repositories/InMemoryGameRepository.js";
+import { CreateMatchUseCase } from "./infra/usecases/match/CreateMatchUseCase.js";
+import JoinMatchUseCase from "./infra/usecases/match/JoinMatchUseCase.js";
+import MakeMoveUseCase from "./infra/usecases/match/MakeMoveUseCase.js";
+import { PlayerConnectionUseCase } from "./infra/usecases/player/PlayerConnectionUseCase.js";
+import { WebSocketService } from "./infra/services/WebSocketService.js";
 
 dotenv.config();
 
@@ -19,7 +19,7 @@ const app = express();
 const httpServer = createServer(app);
 const io = new SocketIOServer(httpServer, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000", "https://online-tic-tac-toe-virid.vercel.app/"],
     methods: ["GET", "POST"]
   }
 });
@@ -28,7 +28,7 @@ app.use(cors({
   origin: "http://localhost:3000"
 }));
 
-app.get("/", (req, res) => {
+app.get("/", (req: any, res: any) => {
   res.send("TicTacToe Server is running!");
 });
 

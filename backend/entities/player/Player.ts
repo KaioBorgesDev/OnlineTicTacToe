@@ -1,6 +1,6 @@
-import { GameSession } from "./GameSession";
-import { GameStatistics } from "./GameStatistics";
-import { User } from "../User";
+import { User } from "../User.js";
+import { GameSession } from "./GameSession.js";
+import { GameStatistics } from "./GameStatistics.js";
 
 export class Player extends User {
 

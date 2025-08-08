@@ -1,5 +1,5 @@
-import { Player } from "entities/player/Player";
-import { PlayerRepositoryInterface } from "infra/interfaces/PlayerRepositoryInterface";
+import { Player } from "../../entities/player/Player.js";
+import { PlayerRepositoryInterface } from "../interfaces/PlayerRepositoryInterface.js";
 
 export class InMemoryPlayerRepository implements PlayerRepositoryInterface {
   private players: Map<string, Player> = new Map();
@@ -27,6 +27,6 @@ export class InMemoryPlayerRepository implements PlayerRepositoryInterface {
   }
 
   async findConnectedPlayers(): Promise<Player[]> {
-    return Array.from(this.players.values()).filter(player => player.getGameSessionStatus().isInGame());
+    return Array.from(this.players.values()).filter(player => player.getGameSession().isInGame());
   }
 }

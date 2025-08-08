@@ -1,4 +1,4 @@
-import { Match } from "entities/game/Match";
+import { Match } from "../../entities/game/Match.js";
 
 export interface MatchRepositoryInterface {
   create(match: Match): Promise<Match>;

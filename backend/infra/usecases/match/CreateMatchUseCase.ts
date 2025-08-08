@@ -1,12 +1,13 @@
-import { Match } from "entities/game/Match";
-import { MatchRepositoryInterface } from "infra/interfaces/MatchRepositoryInterface"
-import { PlayerRepositoryInterface } from "infra/interfaces/PlayerRepositoryInterface";
-import { Player } from "types/Player";
+import { Match } from "../../../entities/game/Match.js";
+import { PlayerSymbol } from "../../../types/PlayerSymbol.js";
+import { MatchRepositoryInterface } from "../../interfaces/MatchRepositoryInterface.js";
+import { PlayerRepositoryInterface } from "../../interfaces/PlayerRepositoryInterface.js";
+
 
 export class CreateMatchUseCase {
     constructor(readonly matchRepository: MatchRepositoryInterface, readonly playerRepository: PlayerRepositoryInterface) {}
 
-    async execute(playerId: string): Promise<{ match: Match, playerSymbol: Player}> {
+    async execute(playerId: string): Promise<{ match: Match, playerSymbol: PlayerSymbol}> {
         const player = await this.playerRepository.findById(playerId); 
 
         if (!player) throw new Error("Não foi encontrado o player!");

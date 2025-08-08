@@ -1,7 +1,7 @@
-import { Match } from "entities/game/Match";
-import { MatchRepositoryInterface } from "infra/interfaces/MatchRepositoryInterface";
-import { PlayerRepositoryInterface } from "infra/interfaces/PlayerRepositoryInterface";
-import { Player } from "types/Player";
+import { Match } from "../../../entities/game/Match.js";
+import { PlayerSymbol } from "../../../types/PlayerSymbol.js";
+import { MatchRepositoryInterface } from "../../interfaces/MatchRepositoryInterface.js";
+import { PlayerRepositoryInterface } from "../../interfaces/PlayerRepositoryInterface.js";
 
 export default class JoinMatchUseCase {
     
@@ -10,7 +10,7 @@ export default class JoinMatchUseCase {
       readonly playerRepository: PlayerRepositoryInterface
     ){}
 
-    async execute(matchID: string, playerID: string): Promise< { match: Match, playerSymbol: string }>{
+    async execute(matchID: string, playerID: string): Promise< { match: Match, playerSymbol: PlayerSymbol }>{
         const match = await this.matchRepository.findById(matchID);
         if (!match) throw new Error("Não há nenhuma partida com esse ID");
 

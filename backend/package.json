@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx nodemon app.js"
+    "build": "rm -rf dist/ || true &&  tsc",
+    "start": "node dist/app.js",
+    "dev": "npx nodemon app.ts"
   },
   "keywords": [],
   "author": "KaioBorgesDev",
@@ -18,12 +20,16 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^17.2.0",
-    "socket.io": "^4.8.1"
+    "express": "^5.1.0",
+    "socket.io": "^4.8.1",
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
-    "@types/socket.io": "^3.0.1",
+    "@types/express": "^5.0.3",
     "@types/node": "^24.0.14",
+    "@types/socket.io": "^3.0.1",
     "express": "^5.1.0",
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "typescript": "^5.0.0"
   }
 }

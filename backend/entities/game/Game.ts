@@ -1,7 +1,8 @@
-import { Board } from "types/Board";
-import { GameResult } from "types/GameResult";
-import { GameStatus } from "types/GameStatus";
-import { Player } from "types/Player";
+import { Board } from "../../types/Board.js";
+import { GameResult } from "../../types/GameResult.js";
+import { GameStatus } from "../../types/GameStatus.js";
+import { PlayerSymbol } from "../../types/PlayerSymbol.js";
+
 
 export default abstract class Game {
     public readonly _id: string;
@@ -22,8 +23,8 @@ export default abstract class Game {
 
     }
 
-    public abstract removePlayer(playerId: string): Player | null
-    public abstract addPlayer(playerId: string): Player | null
+    public abstract removePlayer(playerId: string): PlayerSymbol | null
+    public abstract addPlayer(playerId: string): PlayerSymbol | null
     public abstract reset(): void
-    public abstract toJSON()
+    public abstract toJSON(): void
 }

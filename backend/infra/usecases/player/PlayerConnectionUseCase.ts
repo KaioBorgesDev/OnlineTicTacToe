@@ -1,6 +1,7 @@
-import { Player } from "entities/player/Player";
-import { MatchRepositoryInterface } from "infra/interfaces/MatchRepositoryInterface";
-import { PlayerRepositoryInterface } from "infra/interfaces/PlayerRepositoryInterface";
+import { Player } from "../../../entities/player/Player.js";
+import { MatchRepositoryInterface } from "../../interfaces/MatchRepositoryInterface.js";
+import { PlayerRepositoryInterface } from "../../interfaces/PlayerRepositoryInterface.js";
+
 
 
 export class PlayerConnectionUseCase {

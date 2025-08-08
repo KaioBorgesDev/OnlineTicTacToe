@@ -1,8 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./GameInfo.module.css";
 import { GameInfoProps } from "@/interfaces/GameInfoProps";
-
-
 
 export const GameInfo: React.FC<GameInfoProps> = ({
     game,
@@ -10,6 +8,7 @@ export const GameInfo: React.FC<GameInfoProps> = ({
     playerSymbol,
     isConnected,
 }) => {
+    const [copySuccess, setCopySuccess] = useState(false);
     const getStatusMessage = () => {
         if (!game) return "Nenhum jogo ativo...";
 
@@ -30,6 +29,27 @@ export const GameInfo: React.FC<GameInfoProps> = ({
 
     const getConnectionStatus = () => {
         return isConnected ? "🟢 Conectado" : "🔴 Desconectado";
+    };
+
+    const copyGameId = async () => {
+        if (!game?.id) return;
+
+        try {
+            await navigator.clipboard.writeText(game.id);
+            setCopySuccess(true);
+            setTimeout(() => setCopySuccess(false), 2000);
+        } catch (err) {
+            console.error('Falha ao copiar ID:', err);
+            // fallback para navegadores mais antigos
+            const textArea = document.createElement('textarea');
+            textArea.value = game.id;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            setCopySuccess(true);
+            setTimeout(() => setCopySuccess(false), 2000);
+        }
     };
 
     return (
@@ -53,7 +73,29 @@ export const GameInfo: React.FC<GameInfoProps> = ({
 
             {game && (
                 <div className={styles.gameStatus}>
-                    <p className={styles.gameId}>ID da partida: {game.id}</p>
+                    <div className={styles.gameIdSection}>
+                        <div className={styles.gameId}>
+                            <span className={styles.gameIdLabel}>ID da partida:</span>
+                            <span className={styles.gameIdValue}>{game.id}</span>
+                        </div>
+                        <button
+                            onClick={copyGameId}
+                            className={`${styles.copyButton} ${copySuccess ? styles.copySuccess : ''}`}
+                            title="Copiar ID da partida"
+                        >
+                            {copySuccess ? (
+                                <>
+                                    <span className={styles.copyIcon}>✅</span>
+                                    Copiado!
+                                </>
+                            ) : (
+                                <>
+                                    <span className={styles.copyIcon}>📋</span>
+                                    Copiar
+                                </>
+                            )}
+                        </button>
+                    </div>
                     <p className={styles.status}>{getStatusMessage()}</p>
 
                     <div className={styles.playersInfo}>
@@ -68,17 +110,17 @@ export const GameInfo: React.FC<GameInfoProps> = ({
             )}
 
             {
-            player && player.stats && player.stats.totalGames > 0 && (
-            <div className={styles.stats}>
-                <h4>Suas Estatísticas</h4>
-                <div className={styles.statsGrid}>
-                    <div>Vitórias: {player.stats.wins}</div>
-                    <div>Derrotas: {player.stats.losses}</div>
-                    <div>Empates: {player.stats.draws}</div>
-                    <div>Total: {player.stats.totalGames}</div>
-                </div>
-            </div>
-            )}
+                player && player.stats && player.stats.totalGames > 0 && (
+                    <div className={styles.stats}>
+                        <h4>Suas Estatísticas</h4>
+                        <div className={styles.statsGrid}>
+                            <div>Vitórias: {player.stats.wins}</div>
+                            <div>Derrotas: {player.stats.losses}</div>
+                            <div>Empates: {player.stats.draws}</div>
+                            <div>Total: {player.stats.totalGames}</div>
+                        </div>
+                    </div>
+                )}
         </div>
     );
 };

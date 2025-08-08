@@ -1,6 +1,6 @@
 export class GameSession {
     private isConnected: boolean;
-    private currentMatchID?: string;
+    private currentMatchID?: string | undefined;
 
     constructor() {
         this.isConnected = true;
