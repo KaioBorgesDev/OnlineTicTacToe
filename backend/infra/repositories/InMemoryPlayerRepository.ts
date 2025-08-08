@@ -27,6 +27,6 @@ export class InMemoryPlayerRepository implements PlayerRepositoryInterface {
   }
 
   async findConnectedPlayers(): Promise<Player[]> {
-    return Array.from(this.players.values()).filter(player => player.getGameSessionStatus().isInGame());
+    return Array.from(this.players.values()).filter(player => player.getGameSession().isInGame());
   }
 }
