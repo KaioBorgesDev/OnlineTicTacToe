@@ -13,7 +13,8 @@ Este projeto serve como uma jornada prática para quem quer:
 * Entender como funciona a comunicação **cliente ↔ servidor** em tempo real
 * Aplicar conceitos de **Sockets**, **Event-Driven Design**, e **Deploy com Docker**
 * Aprender e se divertir desenvolvendo um game clássico multiplayer
-* Desenvolver sem dependência de IAs (ChatGPT, Copilot, etc.) para maximizar o aprendizado
+* Desenvolver sem dependência de IAs (ChatGPT, Copilot, etc.) para maximizar o aprendizado 
+> (Acabou sendo utilizado para desenvolver o frontend + ajudas com deploy's)
 
 ---
 
