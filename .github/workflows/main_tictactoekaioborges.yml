@@ -7,6 +7,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'backend/**'  # Only trigger when backend files change
   workflow_dispatch:
 
 jobs:
@@ -23,17 +25,36 @@ jobs:
         with:
           node-version: '22.x'
 
-      - name: npm install, build, and test
-        run: |
-          npm install
-          npm run build --if-present
-          npm run test --if-present
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: backend/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('backend/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        working-directory: ./backend
+        run: npm ci
+
+      - name: Build application
+        working-directory: ./backend
+        run: npm run build
+
+      - name: Run tests
+        working-directory: ./backend
+        run: npm run test --if-present
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: .
+          path: |
+            backend/dist/
+            backend/package*.json
+            backend/.nvmrc
+            backend/web.config
+            backend/startup.cmd
 
   deploy:
     runs-on: ubuntu-latest

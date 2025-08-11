@@ -1,11 +1,10 @@
 {
   "name": "tiktoktoe",
   "version": "1.0.0",
-  "main": "index.js",
-  "type": "module",
+  "main": "dist/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rm -rf dist/ || true &&  tsc",
+    "build": "rm -rf dist/ || true && tsc",
     "start": "node dist/app.js",
     "dev": "npx nodemon app.ts"
   },
