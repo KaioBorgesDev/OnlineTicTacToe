@@ -56,9 +56,7 @@ docker compose up
 
 Você pode acessar o projeto hospedado (quando disponível) através do link de deploy:
 
-**[Link do Deploy em Produção]** — *Frontend hospedado na Vercel*
-
-> Em breve: backend e sockets em nuvem com Azure App Service.
+**https://online-tic-tac-toe-virid.vercel.app/** — *Frontend hospedado na Vercel*
 
 ---
 
