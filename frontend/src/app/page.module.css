@@ -247,24 +247,25 @@
   padding: 1rem 1.5rem;
   font-size: 1rem;
   font-family: 'JetBrains Mono', monospace;
-  border: 2px solid var(--glass-border);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: var(--radius-md);
-  background: var(--glass-bg);
-  color: var(--text-primary);
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
 }
 
 .gameIdInput::placeholder {
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.6);
   font-family: 'Inter', sans-serif;
 }
 
 .gameIdInput:focus {
   outline: none;
-  border-color: rgba(79, 172, 254, 0.6);
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 0 0 4px rgba(79, 172, 254, 0.1);
+  border-color: rgba(79, 172, 254, 0.8);
+  background: rgba(0, 0, 0, 0.8);
+  color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(79, 172, 254, 0.2);
 }
 
 .joinButton {
@@ -408,6 +409,22 @@
   .controlHeader h2 {
     font-size: 1.5rem;
   }
+  
+  .gameIdInput {
+    background: #000000;
+    color: #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+  }
+  
+  .gameIdInput::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .gameIdInput:focus {
+    background: #1a1a1a;
+    color: #ffffff;
+    border-color: rgba(79, 172, 254, 0.8);
+  }
 }
 
 @media (max-width: 480px) {
@@ -424,6 +441,24 @@
   .joinButton {
     font-size: 0.95rem;
     padding: 0.875rem 1.5rem;
+  }
+  
+  .gameIdInput {
+    background: #000000;
+    color: #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+    padding: 0.875rem 1.25rem;
+  }
+  
+  .gameIdInput::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .gameIdInput:focus {
+    background: #1a1a1a;
+    color: #ffffff;
+    border-color: rgba(79, 172, 254, 0.9);
   }
   
   .gameHeader h2 {
