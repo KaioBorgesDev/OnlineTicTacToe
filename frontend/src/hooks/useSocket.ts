@@ -18,6 +18,7 @@ export const useSocket = (): UseSocketReturn => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    console.log(process.env.API_BACKEND);
     socketRef.current = io( process.env.API_BACKEND ||'https://kaioborgesdevtictactoe.netlify.app:3001/');
     const socket = socketRef.current;
 
