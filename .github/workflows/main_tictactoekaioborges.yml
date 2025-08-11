@@ -33,13 +33,19 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Install dependencies for production
+      - name: Install all dependencies (including dev)
         working-directory: ./backend
-        run: npm ci --production
+        run: npm ci
 
       - name: Build application
         working-directory: ./backend
         run: npm run build
+
+      - name: Install production dependencies only
+        working-directory: ./backend
+        run: |
+          rm -rf node_modules
+          npm ci --production
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
