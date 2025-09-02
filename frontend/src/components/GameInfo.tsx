@@ -28,7 +28,7 @@ export const GameInfo: React.FC<GameInfoProps> = ({
     };
 
     const getConnectionStatus = () => {
-        return isConnected ? "🟢 Conectado" : "🔴 Desconectado";
+        return isConnected ? "🟢 Conectado" : "🔴 Desconectado, pode demorar um pouco...";
     };
 
     const copyGameId = async () => {
